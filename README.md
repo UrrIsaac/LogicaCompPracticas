@@ -1,1 +1,1 @@
-# LógicaComputacional
+# Prácticas de Lógica Computacional
