@@ -12,12 +12,19 @@
     Fecha de entrega : 17 de Febero de 2026
 -}
 
--- Espacio para actividad 1
+-- EJERCICIO 1. Fibonnaci
+--     Descripción: Definir una función que dado un natural n, regrese el n-ésimo elemento en la secuencia de fibonnaci
+fibonacci:: Integer -> Integer
+fibonacci 0 = 0    -- Caso base, si el lugar es 0 se regresa 0
+fibonacci 1 = 1    -- Caso base, si el lugar es 1 se regresa 1
+fibonacci n = fibonacci (n-1) + fibonacci (n-2)    -- Rescursion sumando los dos lugares anteriores
 
-
--- Espacio para actividad 2
-
-
+-- EJERCICIO 2. Módulo n
+--    Descripción: Definir una función que recibe dos naturales n,m y regresa m %n.
+modulo:: Integer -> Integer -> Integer
+modulo n m
+ | m < n = m    --Si el dividendo es menor que el divisor regresamos el dividendo
+ | otherwise = modulo n (m-n)    --En otro caso sacamos el modulo del divisor con la resta del dividendo menos el divisor
 
 -- EJERCICIO 3. Máximo común divisor de dos números.
 --      Descripción : calcula el maximo común divisor de dos numeros, basado en el algoritmo de euclides.
@@ -77,10 +84,23 @@ contar n (x:xs)
     | otherwise = contar n xs -- Si la cabeza no es coincidencia comparo lo demás.
 
 
--- Espacio para actividad 8
+-- EJERCICIO 8. Definición de números naturales
+data Nat = Z | S Nat deriving Show    --Se agrego deriving Show para poder escribir en la terminal el resultado del ejercicio 10
 
 
--- Espacio para actividad 9
+-- EJERCICIO 9. Conversión a entero
+--    Descripción : Definir una función que convierta un valor de tipo Nat a entero.
+convertir:: Nat -> Integer
+convertir Z = 0    --Caso base, Z es el 0 en los naturales
+convertir (S n) = 1 + convertir n    --Sumamos uno por cada "S" que encontremos y de forma recusiva analizamos n
 
 
--- Espacio para actividad 10
+-- EJERCICIO 10. Multiplicación sobre Nat
+--    Descripción: Definir la multiplicación de dos números naturales definidos con el tipo anterior, no utilizar la función anterior y realizar la suma definida en Haskell.
+suma :: Nat -> Nat -> Nat    -- Definimos la suma en los naturales
+suma Z n = n    --Caso base, si sumamos cualquier natural con "Z" nos regresa el natural 
+suma (S m) n = S (suma m n)    -- De forma recursiva cada que encontremos el sucesor (S) de un natural sumado con otro natural regresamos el sucesor de la suma de ambos naturales
+
+mult :: Nat -> Nat -> Nat    --Definimos la mutiplicacion
+mult Z (S n) = Z    --Caso base, si multiplicamos por Z nos regresa Z
+mult (S n) m = suma m (mult n m)    --De forma recursiva si encontramos la multiplicacion del sucesor de un natural con otro natural entonces aplicamos la funcion suma a el segundo natural con la multiplicacion de ambos naturales
