@@ -1,9 +1,3 @@
-
-{-
-    Incluir comentarios explicando cada función
-    No usar funciones de biblioteca que resuelvan directamente los ejercicios
--}
-
 {-
     Nombres : 
         - Andrade Castañeda Angel
@@ -21,7 +15,7 @@ fibonacci n = fibonacci (n-1) + fibonacci (n-2)    -- Rescursion sumando los dos
 
 -- EJERCICIO 2. Módulo n
 --    Descripción: Definir una función que recibe dos naturales n,m y regresa m %n.
-modulo:: Integer -> Integer -> Integer
+modulo:: Int -> Int -> Int
 modulo n m
  | m < n = m    --Si el dividendo es menor que el divisor regresamos el dividendo
  | otherwise = modulo n (m-n)    --En otro caso sacamos el modulo del divisor con la resta del dividendo menos el divisor
@@ -31,7 +25,8 @@ modulo n m
 mcd :: Int -> Int -> Int
 mcd a b
   | b == 0    = miAbs a     -- Como 0 es divisible por todo número, el máximo de la dupla es b.
-  | otherwise = mcd b (a `mod` b) -- Hace la recursion basada en el algoritmo de euclides.
+  | otherwise = mcd b (b `modulo` a) -- Hace la recursion basada en el algoritmo de euclides.
+
 
 -- == Función auxiliar para no usar 'abs' de haskell.
 miAbs :: Int -> Int
@@ -71,7 +66,7 @@ pares (x:xs)
 -- == Función auxiliar para ver si un número es par.
 esPar :: Int -> Bool
 esPar n
-    | n `mod` 2 == 0 = True -- Con el modulo digo si algo es par o no.
+    | 2 `modulo` n == 0 = True -- Con el modulo digo si algo es par o no.
     | otherwise = False
 
 
